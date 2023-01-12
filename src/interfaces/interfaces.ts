@@ -28,6 +28,7 @@ export type UsersStateRedux = {
     loading: boolean;
     error: null | string;
     usersData?: UsersData[] | [];
+    lastId: number;
 }
 
 export type UserTableProps = {

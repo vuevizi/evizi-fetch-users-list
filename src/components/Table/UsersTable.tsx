@@ -5,10 +5,10 @@ import {Avatar, Table, Tag} from "antd";
 const UsersTable: React.FC<UserTableProps> = ({usersData,loading}) => {
     const dataSource = usersData?.map((user, index) => (
             {
-                key: user.node_id,
-                id: user.id,
+                key: user?.node_id,
+                id: user?.id,
                 avatar: <Avatar src={user.avatar_url}/>,
-                name: user.html_url.replace("https://github.com/", ""),
+                name: user.html_url?.replace("https://github.com/", ""),
                 admin: user.site_admin ? <Tag color="magenta">Admin</Tag> : <Tag color="red">Not Admin</Tag>
             }
         )

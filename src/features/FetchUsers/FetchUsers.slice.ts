@@ -27,7 +27,8 @@ export const fetchUser = createAsyncThunk(
 const initialState = {
     error: "",
     loading: false,
-    usersData: []
+    usersData: [],
+    lastId:1,
 } as UsersStateRedux;
 const usersSlice = createSlice({
     name: "UserSlice",
@@ -35,6 +36,7 @@ const usersSlice = createSlice({
     reducers: {
         resetUsersTable: (state) => {
             state.usersData = [];
+            state.lastId = 1;
         }
     },
     extraReducers: (builder) => {
@@ -43,7 +45,9 @@ const usersSlice = createSlice({
         });builder.addCase(fetchUser.fulfilled, (state,action) => {
             state.loading = false;
             // @ts-ignore
-            state.usersData = [...action.payload];
+            state.usersData.push(...action.payload);
+            state.lastId = action.payload[action.payload.length - 1].id
+
         });builder.addCase(fetchUser.rejected, (state,action) => {
             state.loading = false;
             // @ts-ignore
