@@ -1,6 +1,6 @@
 export interface FetchUsersParams {
     since?: number,
-    per_page?:number,
+    per_page:number,
 }
 export type ListRespone<T> = T[];
 
@@ -22,4 +22,15 @@ export type UsersData = {
     "events_url": string,
     "received_events_url": string,
     "site_admin": boolean
+}
+
+export type UsersStateRedux = {
+    loading: boolean;
+    error: null | string;
+    usersData?: UsersData[] | [];
+}
+
+export type UserTableProps = {
+    usersData?: UsersData[];
+    loading: boolean;
 }
